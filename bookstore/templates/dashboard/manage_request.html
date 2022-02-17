@@ -1,0 +1,119 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+  <div class="row" style="padding-top: 30px">
+  
+  <div class="col-sm-1" style="color: red">
+  </div>
+  
+  
+  <div class="col-sm-10">
+              <div class="card mb-3">
+                  <div class="card-header">
+                      <i class="fas fa-table " style="color: #b485c0;"></i>
+                      Manage Request
+                  </div>
+                  <div class="card-body">
+  
+              <!-- Breadcrumbs-->
+              {% for feedback in feedbacks %}
+                          <div class="alert alert-{{ feedback.make_request }}alert-dismissible" role="alert">
+                            {{ feedback.manage_request }}
+                          </div>
+                      {% endfor %}
+              <div class="card mb-3">
+                  <div class="card-body">
+  
+                      <div class="table-responsive">
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                              <thead>
+                              <tr>
+                                  <th>Book ID</th>
+                                  <th>Book Title</th>
+                                  <th>Book Author</th>
+                                  <th>Book Publisher</th>
+                                  <th>Requested_by</th>
+                                  <th>Delete</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+  
+  
+                                {% if feedbacks %}
+                                  {% for book in feedbacks %}
+  
+                          
+                                  <tr>
+                                    <td>{{ book.id }}</td>
+                                    <td>{{ book.title }}</td>
+                                    <td>{{ book.author }}</td>
+                                    <td>{{ book.publisher }}</td>
+                                    <td>{{ book.requested_by }}</td>
+                         
+                   <td>
+                  <a href="{% url 'adrequest' book.pk%}"><button type="button" class="btn btn-danger"> Delete</button></a></td>
+                                    
+                                  </tr>
+  
+                                  <!-- end for and if -->
+                                  {% endfor %}
+                                  {% endif %}
+                              </tbody>
+                          </table>
+  
+  
+  
+  
+                            {% if is_paginated %}
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </tbody>
+  </table>
+    
+  
+  
+  
+          </div>
+      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+{% endblock content %}
+
+
+
+
+

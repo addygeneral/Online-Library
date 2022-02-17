@@ -1,0 +1,58 @@
+{% extends 'lecturer/base.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3" style="color: rgb(122, 63, 129)">
+  <p style="color: rgb(122, 63, 129)"></p>  
+</div>
+
+
+
+<div class="col-sm-6" style="padding-top: 10px;">
+    <div class="card">
+</div>
+
+
+<div class="card mb-2">
+<div class="card-body">
+
+<div class="row" style="background-color: rgba(50, 43, 53, 0.507)">
+	 <div class="card col-sm-12">
+  <div class="card-header text-primary">
+     <center>Welcome To CSC Online LIbrary Group Chat</center>
+  </div>
+</div>
+
+    <div class="col-sm-8">
+    	<div class="myform">
+    	    <form method="POST">
+    	{% csrf_token %}
+    	{{ form.as_p }}
+
+    	<br><input type="submit" value="Post" class="btn btn-lg btn-outline-primary">
+    </form>
+</div>
+
+    <div class="col-sm-4"></div>
+    </div>
+
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+
+
+
+<div class="col-sm-2" style="color: rgb(122, 63, 129)">
+</div>
+
+</div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends 'student/base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3" style="color: rgb(122, 63, 129)">
+  <p style="color: rgb(122, 63, 129)"></p>  
+</div>
+
+
+
+<div class="col-sm-6" style="padding-top: 65px">
+    <div class="card">
+</div>
+
+
+<div class="card mb-2">
+<div class="card-body">
+
+<div class="row">
+    <div class="col-sm-8">
+    <a href="/ulchat"><button class="btn btn" style="color: rgb(255, 255, 255); background-color:rgb(247, 12, 239 )"><i class="fa fa-refresh" aria-hidden="true"></i>
+    Refresh For Any New Chats</button></a><br><br><br>
+
+    {% for chat in object_list %}
+
+
+        <div class="chat" style="width: 150%; background: white; box-shadow: 2px 2px 10px 3px rgb(70, 69, 69);">
+            {% if chat.user.is_superuser or chat.user.is_admin %}
+                
+                <small class="chat-user-special text-success"> {{ chat.user }}- Admin </small>
+
+            {% elif chat.user.is_lecturer %}
+                <small class="chat-user-special text-danger"> {{ chat.user }}- Lecturer </small>    
+
+            {% else %}
+
+                        <small class="chat-user text-primary"> {{ chat.user }} - Student </small>              
+
+            {% endif %}
+            <p><b class="chat-content">{{ chat|linebreaks }}</b></p>
+            <small class="chat-date">{{ chat.posted_at }}</small>
+        </div><br><br><br>
+
+    {% empty %}
+    <h1 class="heading">No Chats Yet Be The First To Message!</h1><br>
+
+    {% endfor %}
+    <br><a href="{% url 'ucchat' %}"><button class="btn " style="color: rgb(255, 255, 255); background-color:rgb(247, 12, 239 )" >New Text</button></a>
+
+    <div class="col-sm-4"></div>
+    </div>
+
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+
+
+
+<div class="col-sm-2" style="color: rgb(122, 63, 129)">
+</div>
+
+</div>
+</div>
+
+
+{% endblock content %}
+
+
+
+
+
